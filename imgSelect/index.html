@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const div = document.querySelectorAll("section div");
+            const divImg = document.querySelectorAll("section div img");
+            const popImg = document.querySelector(".pop img");
+            const prevBtn = document.querySelector(".prev");
+            const nextBtn = document.querySelector(".next");
+            const popSpan = popImg.nextSibling;
+            let imgSrc;
+            let imgTxt;
+            let idx = 0;
+
+            attrChange();
+            clickChange();
+            //이미지 클릭
+            for (var i = 0; i < divImg.length; i++) {
+                divImg[i].addEventListener("click", function () {
+                    imgSrc = this.getAttribute("src");
+                    imgTxt = this.nextSibling.textContent;
+                    idx = this.parentNode.dataset.id;
+                    console.log(this.parentNode.dataset.id);
+                    clickChange();
+                });
+            }
+
+
+            //버튼 클릭
+            nextBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                if (idx < div.length - 1) {
+                    idx++;
+                } else {
+                    idx = 0;
+                }
+
+                attrChange();
+                clickChange();
+            });
+            prevBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                if (idx > 0) {
+                    idx--;
+                } else {
+                    idx = 5;
+                }
+                attrChange();
+                clickChange();
+            });
+
+
+            function clickChange() {
+                popImg.setAttribute("src", imgSrc);
+                popSpan.textContent = imgTxt;
+            }
+
+            function attrChange() {
+                imgSrc = div[idx].childNodes[0].getAttribute("src");
+                imgTxt = div[idx].childNodes[1].textContent;
+            }
+        })
+    </script>
+    <style>
+        .pop {
+            text-align: center;
+        }
+
+        .pop img {
+            width: 400px;
+            height: 300px;
+        }
+
+        section {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        section div {
+            width: 30%;
+        }
+
+        section div img {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pop">
+        <img src="" alt=""><span></span>
+        <div class="btn"><a href="" class="prev">prev</a><a href="" class="next">next</a></div>
+    </div>
+    <section>
+        <div data-id="0"><img src="img/img_01.jpg" alt=""><span>img1</span></div>
+        <div data-id="1"><img src="img/img_02.jpg" alt=""><span>img2</span></div>
+        <div data-id="2"><img src="img/img_03.jpg" alt=""><span>img3</span></div>
+        <div data-id="3"><img src="img/img_01.jpg" alt=""><span>img4</span></div>
+        <div data-id="4"><img src="img/img_02.jpg" alt=""><span>img5</span></div>
+        <div data-id="5"><img src="img/img_03.jpg" alt=""><span>img6</span></div>
+    </section>
+</body>
+
+</html>
