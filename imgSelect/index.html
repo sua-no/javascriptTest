@@ -25,12 +25,9 @@
                     imgSrc = this.getAttribute("src");
                     imgTxt = this.nextSibling.textContent;
                     idx = this.parentNode.dataset.id;
-                    console.log(this.parentNode.dataset.id);
                     clickChange();
                 });
             }
-
-
             //버튼 클릭
             nextBtn.addEventListener("click", function (e) {
                 e.preventDefault();
@@ -39,7 +36,6 @@
                 } else {
                     idx = 0;
                 }
-
                 attrChange();
                 clickChange();
             });
@@ -53,13 +49,11 @@
                 attrChange();
                 clickChange();
             });
-
-
+            
             function clickChange() {
                 popImg.setAttribute("src", imgSrc);
                 popSpan.textContent = imgTxt;
             }
-
             function attrChange() {
                 imgSrc = div[idx].childNodes[0].getAttribute("src");
                 imgTxt = div[idx].childNodes[1].textContent;
