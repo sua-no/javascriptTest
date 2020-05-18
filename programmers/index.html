@@ -8,34 +8,57 @@
     <script>
         solution();
         function solution() {
-            var answer = [];
-            var arr = [3, 2, 6];
-            var divisor = 10;
+            // var answer = [];
 
-            answer = arr.filter(remain);
-            function remain(a) {
-                if (a % divisor == 0) {
-                    return a;
-                }
-            }
-
-            // for (var i = 0; i < arr.length; i++) {
-            //     var val = arr[i] % divisor;
-            //     if (val == 0) {
-            //         answer.push(arr[i]);
-            //     }
+            // var number = "1231234";
+            // var k = 3;
+            // var arr = number.split("");
+            // console.log(arr);
+            // arr.filter(min);
+            // function min(){
             // }
-            if (answer == 0) {
-                answer.push(-1);
-            } else {
-                answer.sort(function (a, b) {
-                    return a - b;
-                });
+            // // console.log(answer);
+            // return answer.join("");
+
+            //다음 큰 숫자
+            // var n = 78;
+            // var str = n.toString(2);
+            // console.log(str.split(""));
+
+            var answer = 0;
+            var land = [[50, 60, 70, 80], [1, 2, 3, 100], [1, 2, 80, 101]];
+            // var max, maxIdx, last, remove = [];
+            // for (var i = 0; i < land.length; i++) {
+            //     max = Math.max.apply(null, land[i]);
+            //     maxIdx = land[i].indexOf(max);
+            //     var arr = land[i];
+            //     if (maxIdx == last) {
+            //         remove = arr.splice(maxIdx, 1);
+            //         console.log(remove);
+            //         console.log(arr);
+            //         max = Math.max.apply(null, arr);
+            //         maxIdx = land[i].indexOf(max);
+            //     }
+            //     answer += max;
+            //     last = maxIdx;
+            // }
+            var arr = [], count = 0;
+            for (var i = 0; i < 4; i++) {
+                for (var j = 0; j < 4; j++) {
+                    count = land[i][j] + land[i + 1][j];
+                    console.log(count);
+                }
+                arr.push(count);
             }
+            console.log("arr" + arr);
 
-            console.log(answer);
 
-            return answer;
+
+
+
+
+
+            // console.log("answer:::" + answer);
         }
     </script>
 </head>
