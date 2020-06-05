@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateY(0);
+            transition: all .5s;
+        }
+
+        .box1 {
+            background: #a067da;
+            z-index: 4;
+        }
+
+        .box2 {
+            background: #b8da67;
+            z-index: 3;
+        }
+
+        .box3 {
+            background: #6777da;
+            z-index: 2;
+        }
+
+        .box4 {
+            background: #da7467;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+    </section>
+    <script>
+        const wrap = document.querySelector('section'),
+            box = document.querySelectorAll('section div');
+        let index = 0, timer = true;
+        wrap.addEventListener('wheel', wheelManager);
+
+        function wheelManager(e) {
+            if (timer) {
+                timer = false;
+                if (e.deltaY > 0) {
+                    if (index < box.length - 1) {
+                        box[index].style.transform = "translateY(-100%)"
+                        index++;
+                    }
+
+                } else {
+                    if (index != 0) {
+                        index--;
+                        box[index].style.transform = "translateY(0%)"
+                    }
+                }
+                setTimeout(function () { timer = true; }, 500);
+            }
+        }
+    </script>
+</body>
+
+</html>
